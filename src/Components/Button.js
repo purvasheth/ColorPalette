@@ -1,29 +1,24 @@
-import React from "react"
-import reactCSS from "reactcss"
+import React from "react";
+import styled from "styled-components";
 
-const Button = props => {
+const StyledButton = styled.button`
+  padding: 15px;
+  height: 4rem;
+  width: 9rem;
+  background: url("https://img.icons8.com/android/24/000000/plus.png") no-repeat;
+  background-color: lightgrey;
+  cursor: pointer;
+  margin: 40px 15px 40px 15px;
+  background-position: 3.5rem center;
+  border: transparent;
 
-    const styles = reactCSS({
-        default: {
-            button: {
-                padding: "1.5rem",
-                height: "1.5rem",
-                width: "5rem",
-                backgroundColor: "lightgrey",
-                display: "inline-block",
-                cursor: "pointer",
-                float: "left",
-                margin: "1.5rem 3rem 1.5rem 3rem",
-            },
-        }
-    })
+  &::-moz-focus-inner {
+    border: 0;
+  }
+`;
 
-    return (
-        <div style={styles.button} onClick={props.handleClick}>
-            <img src="https://img.icons8.com/android/24/000000/plus.png" alt="+" />
-        </div>
-    )
+const Button = (props) => {
+  return <StyledButton onClick={props.handleClick} />;
+};
 
-}
-
-export default Button
+export default Button;

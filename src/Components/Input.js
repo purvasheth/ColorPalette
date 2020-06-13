@@ -1,26 +1,27 @@
-import React from "react"
-import reactCSS from "reactcss"
+import React from "react";
+import styled from "styled-components";
 
-const Input = props => {
+const StyledInput = styled.input`
+  margin: 0px 5px 0px 0.5px;
+  border: transparent;
+  color: black;
+  font-size: 1rem;
+  border-bottom: 0.15rem solid darkgrey;
+  width: 9rem;
+`;
 
-    const styles = reactCSS({
-        default: {
-            input: {
-                textAlign: "center",
-                border: "transparent",
-                color: "black",
-                fontSize: "1rem"
-            }
-        }
-    })
-
-    return (
-        <input
-            value={props.color.label}
-            style={styles.input}
-            onChange={e => props.updateLabel(props.color.hex, e.target.value)}
-        />
-    )
-}
-
-export default Input
+const Input = (props) => {
+  const c = props.color;
+  return (
+    <StyledInput
+      value={c.label}
+      onChange={(e) =>
+        props.dispatch({
+          type: "label",
+          payload: { hex: c.hex, label: e.target.value },
+        })
+      }
+    />
+  );
+};
+export default Input;

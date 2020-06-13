@@ -1,49 +1,41 @@
-import React from "react"
-import reactCSS from "reactcss"
-import Span from "./Span"
+import React from "react";
+import styled from "styled-components";
+import Span from "./Span";
 import Input from "./Input";
 
-const Palette = props => {
-    const styles = reactCSS({
-        default: {
-            color: {
-                float: "left",
-                margin: "0.5rem"
-            },
-            label: {
-                fontSize: "0.80rem"
-            },
-        }
-    });
-    return (
-        <React.Fragment>
-            {
-                props.colors.map(color => (
-                    <div key={color.hex} style={styles.color}>
-                        <Input
-                            color={color}
-                            updateLabel={props.updateLabel}
-                        />
-                        <br />
-                        <Span
-                            color={color}
-                            updateHover={props.updateHover}
-                            Delete={props.Delete}
-                            setUpdate={props.setUpdate}
-                            setHex={props.setHex}
-                            setDisplayPicker={props.setDisplayPicker}
-                        />
-                        <br />
-                        <label style={styles.label}>{color.hex}</label>
-                        <br />
-                        <label style={styles.label}>{color.rgb}</label>
-                        <br />
-                        <label style={styles.label} >cmyk</label>
-                    </div>
-                ))
-            }
-        </React.Fragment>
-    )
-}
+const Label = styled.label`
+  font-size: 0.7rem;
+  margin: 0px 10px 0px 10px;
+`;
+const ColorDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  margin: 10px 0px 10px 10px;
+`;
 
-export default Palette
+const Palette = (props) => {
+  return (
+    <React.Fragment>
+      {props.colors.map((color) => (
+        <ColorDiv key={color.hex}>
+          <Input color={color} dispatch={props.dispatch} />
+          <br />
+          <Span
+            color={color}
+            dispatch={props.dispatch}
+            setUpdate={props.setUpdate}
+            setHex={props.setHex}
+            setDisplayPicker={props.setDisplayPicker}
+          />
+          <br />
+          <Label>HEX {color.hex.toUpperCase()}</Label>
+          <br />
+          <Label>RGB {color.rgb}</Label>
+        </ColorDiv>
+      ))}
+    </React.Fragment>
+  );
+};
+
+export default Palette;
