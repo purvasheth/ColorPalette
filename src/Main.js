@@ -8,6 +8,7 @@ const MainDiv = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const initialState = JSON.parse(localStorage.getItem("key")) || [];
